@@ -1,50 +1,118 @@
-# okparaku_ohms_law_calculator
-Ohm’s Law and Power Calculator
+# CTE 123 Python Mini Project
+# Project: Ohm's Law and Power Calculator
+# Author: Okparaku Mitchell
+# Course: ND1 Mechatronics Engineering
 
-What it does
+# This function checks that a number is positive.
+def get_positive_number(message):
+    while True:
+        try:
+            value = float(input(message))
 
-This is a Python program that calculates voltage, current, resistance and electrical power using Ohm’s Law and electrical power formulas.
+            if value > 0:
+                return value
+            else:
+                print("Error: Please enter a number greater than zero.")
 
-It also includes a Circuit Power Status Checker that compares the calculated power with a limit entered by the user.
+        except ValueError:
+            print("Error: Please enter a valid number.")
 
-How to run it
 
-1. Install Python 3 or open an online Python compiler that supports interactive input.
-2. Run the following command in a terminal:
-    python ohms_law.py
-3. Follow the instructions displayed by the program.
+# This function calculates voltage, current, resistance and power.
+def calculate_electricity():
+    print("\nWhat would you like to calculate?")
+    print("1. Voltage")
+    print("2. Current")
+    print("3. Resistance")
+    print("4. Power")
 
-Sample output
+    choice = input("Enter your choice (1-4): ")
 
-OHM'S LAW AND POWER CALCULATOR
-What would you like to calculate?
-1. Voltage
-2. Current
-3. Resistance
-4. Power
-Enter your choice (1-4): 1
-Enter current in amperes (A): 2
-Enter resistance in ohms: 5
-Voltage = 10.00 V
-Power = 20.00 W
---- Circuit Power Status Checker ---
-Enter the power limit in watts (W): 15
-WARNING: Power exceeds your specified limit!
+    if choice == "1":
+        # Voltage = Current x Resistance
+        current = get_positive_number("Enter current in amperes (A): ")
+        resistance = get_positive_number("Enter resistance in ohms: ")
 
-My own twist
+        voltage = current * resistance
+        power = current ** 2 * resistance
 
-I added a Circuit Power Status Checker. It compares the calculated electrical power with a limit entered by the user and reports whether the calculated power is below, equal to or above that limit.
+        print(f"\nVoltage = {voltage:.2f} V")
+        print(f"Power = {power:.2f} W")
 
-This is an educational feature, not a substitute for actual electrical protection equipment.
+    elif choice == "2":
+        # Current = Voltage / Resistance
+        voltage = get_positive_number("Enter voltage in volts (V): ")
+        resistance = get_positive_number("Enter resistance in ohms: ")
 
-What I learned
+        current = voltage / resistance
+        power = voltage * current
 
-I learned how to use Python functions, loops, conditional statements and input validation.
+        print(f"\nCurrent = {current:.2f} A")
+        print(f"Power = {power:.2f} W")
 
-I also learned how to apply Ohm’s Law and electrical power formulas in a simple engineering program.
+    elif choice == "3":
+        # Resistance = Voltage / Current
+        voltage = get_positive_number("Enter voltage in volts (V): ")
+        current = get_positive_number("Enter current in amperes (A): ")
 
-Author
+        resistance = voltage / current
+        power = voltage * current
 
-Okparaku Mitchell
-ND1 Mechatronics Engineering
-Yaba College of Technology
+        print(f"\nResistance = {resistance:.2f} ohms")
+        print(f"Power = {power:.2f} W")
+
+    elif choice == "4":
+        # Power = Voltage x Current
+        voltage = get_positive_number("Enter voltage in volts (V): ")
+        current = get_positive_number("Enter current in amperes (A): ")
+
+        power = voltage * current
+
+        print(f"\nElectrical Power = {power:.2f} W")
+
+    else:
+        print("Invalid choice. Please select a number from 1 to 4.")
+        return
+
+    # Extra feature: Check whether power exceeds the user's chosen limit.
+    print("\n--- Circuit Power Status Checker ---")
+
+    power_limit = get_positive_number(
+        "Enter the power limit in watts (W): "
+    )
+
+    if power > power_limit:
+        print("WARNING: Power exceeds your specified limit!")
+    elif power == power_limit:
+        print("NOTICE: Power is exactly at your specified limit.")
+    else:
+        print("STATUS: Power is within your specified limit.")
+
+
+# Main program: repeat calculations until the user quits.
+def main():
+    print("====================================")
+    print(" OHM'S LAW AND POWER CALCULATOR")
+    print("====================================")
+
+    while True:
+        calculate_electricity()
+
+        print("\nWould you like to perform another calculation?")
+        answer = input("Enter yes or no: ").strip().lower()
+
+        if answer == "no":
+            print("Thank you for using the calculator!")
+            break
+
+        elif answer == "yes":
+            continue
+
+        else:
+            print("Invalid response. The program will end.")
+            break
+
+
+# Start the program.
+if __name__ == "__main__":
+    main()
