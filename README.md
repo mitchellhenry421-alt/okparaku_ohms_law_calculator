@@ -34,7 +34,7 @@ I added a calculation-history feature. It stores successful calculations during 
 
 🔗 What I learned
 
-I practised writing Python functions, using loops and conditional statements, converting user input to numbers, handling invalid input, and storing results in a list.
+I practiced writing Python functions, using loops and conditional statements, converting user input to numbers, handling invalid input, and storing results in a list.
 
 Author
 
