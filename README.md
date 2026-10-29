@@ -27,6 +27,7 @@ Enter current in amperes (A): 2
 Enter resistance in ohms (Ω): 5
 Formula used: V = I × R
 Voltage = 10.00 V
+
 🔗 My own twist
 
 I added a calculation-history feature. It stores successful calculations during the current session and lets the user view them from the menu. The program also prints the formula used for each calculation and checks for invalid or non-positive number inputs.
